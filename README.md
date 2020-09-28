@@ -1,2 +1,2 @@
 # VUT-ISA
-Monitoring SSL spojení (Dr. Grégr)
+SSL connection monitoring (Dr. Grégr)
