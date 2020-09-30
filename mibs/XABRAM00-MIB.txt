@@ -4,14 +4,12 @@ IMPORTS
 	OBJECT-TYPE, Integer32,	MODULE-IDENTITY FROM SNMPv2-SMI
 	MODULE-COMPLIANCE, OBJECT-GROUP         FROM SNMPv2-CONF;
 
--- XABRAM00-MIB MODULE-IDENTITY
---   LAST-UPDATED "202009300000Z"
---   ORGANIZATION "BUT FIT"
---   CONTACT-INFO "email: xabram00@"
---   DESCRIPTION  "A simple mib for ISA purposes."
---   ::= { enterprises 666 }
-
-nstAgentModules OBJECT IDENTIFIER ::= { XABRAM00-MIB 22 }
+XABRAM00-MIB MODULE-IDENTITY
+   LAST-UPDATED "202009300000Z"
+   ORGANIZATION "BUT FIT - Mikhail Abramov"
+   CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
+   DESCRIPTION  "A simple mib for ISA purposes."
+   ::= { experimental 22 }
 
 nstAgentPluginLoginObject OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -19,8 +17,7 @@ nstAgentPluginLoginObject OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    DEFVAL { H'xabram00' }
-    ::= { nstAgentModules 1 }
+    ::= { XABRAM00-MIB 1 }
 
 nstAgentPluginTimeInRFC3339 OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -28,7 +25,7 @@ nstAgentPluginTimeInRFC3339 OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    ::= { nstAgentModules 2 }
+    ::= { XABRAM00-MIB 2 }
 
 nstAgentPluginInt32Object OBJECT-TYPE
     SYNTAX Integer32
@@ -36,8 +33,7 @@ nstAgentPluginInt32Object OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Read-write Int32"
-    DEFVAL { 0 }
-    ::= { nstAgentModules 3 }
+    ::= { XABRAM00-MIB 3 }
 
 nstAgentPluginReleaseVersion OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -45,6 +41,6 @@ nstAgentPluginReleaseVersion OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    ::= { nstAgentModules 4 }
+    ::= { XABRAM00-MIB 4 }
 
 END
