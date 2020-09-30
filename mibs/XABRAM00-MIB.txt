@@ -7,11 +7,11 @@ IMPORTS
 XABRAM00-MIB MODULE-IDENTITY
     LAST-UPDATED "202009300000Z"
     ORGANIZATION "BUT FIT"
-    CONTACT-INFO "email: xabram00@"
+    AUTHOR       "Mikhail Abramov"
+    CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
     DESCRIPTION  "A simple mib for ISA purposes."
-    ::= { experimental 3 }
 
-nstAgentModules OBJECT IDENTIFIER ::= { XABRAM00-MIB 22 }
+nstAgentPlugins OBJECT IDENTIFIER ::= { XABRAM00-MIB 22 }
 
 nstAgentPluginLoginObject OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -20,7 +20,15 @@ nstAgentPluginLoginObject OBJECT-TYPE
     DESCRIPTION
         "Student login"
     DEFVAL { H'xabram00' }
-    ::= { nstAgentModules 1 }
+    ::= { nstAgentPlugins 1 }
+
+nstAgentPluginTimeInRFC3339 OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Student login"
+    ::= { nstAgentPlugins 2 }
 
 nstAgentPluginInt32Object OBJECT-TYPE
     SYNTAX Integer32
@@ -29,6 +37,14 @@ nstAgentPluginInt32Object OBJECT-TYPE
     DESCRIPTION
         "Read-write Int32"
     DEFVAL { 0 }
-    ::= { nstAgentModules 3 }
+    ::= { nstAgentPlugins 3 }
 
+nstAgentPluginReleaseVersion OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Student login"
+    ::= { nstAgentModules 4 }
+    
 END
