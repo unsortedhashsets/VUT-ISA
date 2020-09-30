@@ -10,8 +10,7 @@ XABRAM00-MIB MODULE-IDENTITY
     AUTHOR       "Mikhail Abramov"
     CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
     DESCRIPTION  "A simple mib for ISA purposes."
-
-nstAgentPlugins OBJECT IDENTIFIER ::= { XABRAM00-MIB 22 }
+    ::= { XABRAM00-MIB 22 }
 
 nstAgentPluginLoginObject OBJECT-TYPE
     SYNTAX OCTET STRING
