@@ -4,12 +4,12 @@ IMPORTS
 	OBJECT-TYPE, Integer32,	MODULE-IDENTITY FROM SNMPv2-SMI
 	MODULE-COMPLIANCE, OBJECT-GROUP         FROM SNMPv2-CONF;
 
-XABRAM00-MIB MODULE-IDENTITY
-    LAST-UPDATED "202009300000Z"
-    ORGANIZATION "BUT FIT"
-    CONTACT-INFO "email: xabram00@"
-    DESCRIPTION  "A simple mib for ISA purposes."
-    ::= { experimental 3 }
+-- XABRAM00-MIB MODULE-IDENTITY
+--   LAST-UPDATED "202009300000Z"
+--   ORGANIZATION "BUT FIT"
+--   CONTACT-INFO "email: xabram00@"
+--   DESCRIPTION  "A simple mib for ISA purposes."
+--   ::= { enterprises 666 }
 
 nstAgentModules OBJECT IDENTIFIER ::= { XABRAM00-MIB 22 }
 
