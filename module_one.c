@@ -13,7 +13,7 @@ static oid nstAgentPluginLogin_oid[] = { 1,3,6,1,3,22,1 };
 
 /** Initializes the module_one module */
 void
-init_module_one(void)
+init_nstAgentPluginLogin(void)
 {
     
   DEBUGMSGTL(("module_one", "Initializing\n"));
@@ -50,7 +50,7 @@ handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
 }
 
 void
-deinit_module_one(void)
+deinit_nstAgentPluginLogin(void)
 {
     unregister_mib(nstAgentPluginLogin_oid, OID_LENGTH(nstAgentPluginLogin_oid));
 }

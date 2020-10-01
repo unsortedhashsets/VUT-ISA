@@ -6,10 +6,10 @@
 #define module_one_h
 
 /* function declarations */
-void init_module_one(void);
+void init_nstAgentPluginLogin(void);
 
 Netsnmp_Node_Handler handle_nstAgentPluginLogin;
 
-void deinit_module_one(void);
+void deinit_nstAgentPluginLogin(void);
 
 #endif /* module_one_h */
