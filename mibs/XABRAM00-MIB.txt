@@ -11,7 +11,7 @@ XABRAM00-MIB MODULE-IDENTITY
    DESCRIPTION  "A simple mib for ISA purposes."
    ::= { experimental 22 }
 
-nstAgentPluginLoginObject OBJECT-TYPE
+nstAgentPluginLogin OBJECT-TYPE
     SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
@@ -27,7 +27,7 @@ nstAgentPluginTimeInRFC3339 OBJECT-TYPE
         "Student login"
     ::= { XABRAM00-MIB 2 }
 
-nstAgentPluginInt32Object OBJECT-TYPE
+nstAgentPluginInt32 OBJECT-TYPE
     SYNTAX Integer32
     MAX-ACCESS read-write
     STATUS current
