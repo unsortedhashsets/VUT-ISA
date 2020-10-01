@@ -9,18 +9,15 @@ dod OBJECT IDENTIFIER ::= { org 6 }
 internet OBJECT IDENTIFIER ::= { dod 1 }
 experimental OBJECT IDENTIFIER ::= { internet 3 }
 
--- Module-identity was commented in accordance to requested oid value
 -- OID.1.3.6.1.3.22
 -- iso.org.dod.internet.experimental.(22 = nstAgentModules)
 
--- XABRAM00-MIB MODULE-IDENTITY
---   LAST-UPDATED "202009300000Z"
---   ORGANIZATION "BUT FIT - Mikhail Abramov"
---   CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
---   DESCRIPTION  "A simple mib for ISA purposes."
---   ::= { 666 }    
-
-nstAgentModules   OBJECT IDENTIFIER ::= { experimental 22 }
+XABRAM00-MIB MODULE-IDENTITY
+   LAST-UPDATED "202009300000Z"
+   ORGANIZATION "BUT FIT - Mikhail Abramov"
+   CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
+   DESCRIPTION  "A simple mib for ISA purposes."
+   ::= { experimental 22 }    
 
 nstAgentPluginLogin OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -28,7 +25,7 @@ nstAgentPluginLogin OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    ::= { nstAgentModules 1 }
+    ::= { XABRAM00-MIB 1 }
 
 nstAgentPluginTimeInRFC3339 OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -36,7 +33,7 @@ nstAgentPluginTimeInRFC3339 OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    ::= { nstAgentModules 2 }
+    ::= { XABRAM00-MIB 2 }
 
 nstAgentPluginInt32 OBJECT-TYPE
     SYNTAX Integer32
@@ -44,7 +41,7 @@ nstAgentPluginInt32 OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Read-write Int32"
-    ::= { nstAgentModules 3 }
+    ::= { XABRAM00-MIB 3 }
 
 nstAgentPluginReleaseVersion OBJECT-TYPE
     SYNTAX OCTET STRING
@@ -52,6 +49,6 @@ nstAgentPluginReleaseVersion OBJECT-TYPE
     STATUS current
     DESCRIPTION
         "Student login"
-    ::= { nstAgentModules 4 }
+    ::= { XABRAM00-MIB 4 }
 
 END

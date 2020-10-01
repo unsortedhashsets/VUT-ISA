@@ -75,10 +75,10 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
                                        netsnmp_request_info *requests)
 {
     char *nstAgentPluginTimeInRFC3339_object;
+    returnTimeInRFC3339(&nstAgentPluginTimeInRFC3339_object);
     switch (reqinfo->mode)
     {
     case MODE_GET:
-        returnTimeInRFC3339(&nstAgentPluginTimeInRFC3339_object);
         snmp_set_var_typed_value(requests->requestvb,
                                  ASN_OCTET_STR,
                                  (u_char *)&nstAgentPluginTimeInRFC3339_object,
@@ -143,10 +143,10 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
                                         netsnmp_request_info *requests)
 {
     char *nstAgentPluginReleaseVersion_object;
+    returnSystemInformation(&nstAgentPluginReleaseVersion_object);
     switch (reqinfo->mode)
     {
     case MODE_GET:
-        returnSystemInformation(&nstAgentPluginReleaseVersion_object);
         snmp_set_var_typed_value(requests->requestvb,
                                  ASN_OCTET_STR,
                                  (u_char *)&nstAgentPluginReleaseVersion_object,
