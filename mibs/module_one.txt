@@ -1,0 +1,22 @@
+module_one DEFINITIONS ::= BEGIN
+
+IMPORTS
+	OBJECT-TYPE, Integer32,	MODULE-IDENTITY FROM SNMPv2-SMI
+	MODULE-COMPLIANCE, OBJECT-GROUP         FROM SNMPv2-CONF;
+
+module_one MODULE-IDENTITY
+   LAST-UPDATED "202009300000Z"
+   ORGANIZATION "BUT FIT - Mikhail Abramov"
+   CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
+   DESCRIPTION  "A simple mib for ISA purposes."
+   ::= { experimental 22 }
+
+nstAgentPluginLogin OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Student login"
+    ::= { module_one 1 }
+
+END
