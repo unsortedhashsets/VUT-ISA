@@ -14,10 +14,10 @@ static int nstAgentPluginInt32_object = 0;
 static char nstAgentPluginTimeInRFC3339_object[50];
 static char nstAgentPluginReleaseVersion_object[50];
 
-static oid nstAgentPluginLogin_oid[] = {1, 3, 6, 1, 3, 22, 1, 0};
-static oid nstAgentPluginTimeInRFC3339_oid[] = {1, 3, 6, 1, 3, 22, 2, 0};
-static oid nstAgentPluginInt32_oid[] = {1, 3, 6, 1, 3, 22, 3, 0};
-static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4, 0};
+static oid nstAgentPluginLogin_oid[] = {1, 3, 6, 1, 3, 22, 1 };
+static oid nstAgentPluginTimeInRFC3339_oid[] = {1, 3, 6, 1, 3, 22, 2 };
+static oid nstAgentPluginInt32_oid[] = {1, 3, 6, 1, 3, 22, 3 };
+static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4 };
 
 /** Initializes the module_one module */
 void init_nstAgentPluginLogin(void)
@@ -115,7 +115,9 @@ void returnTimeInRFC3339(char **RFC3339)
             off_sign = '-';
             off = -off;
         }
-        *RFC3339 = "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d\n", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec, off_sign, off / 3600, off % 3600;
+	char tmp[50];
+        sprintf(tmp , "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d\n", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec, off_sign, off / 3600, off % 3600);
+	*RFC3339 = tmp;
     }
 }
 
