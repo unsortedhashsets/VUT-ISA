@@ -20,10 +20,10 @@ deploy:
 	sudo snmpset localhost UCD-DLMOD-MIB::dlmodStatus.3 i create
 	sudo snmpset localhost UCD-DLMOD-MIB::dlmodStatus.4 i create
 
-	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s "nstAgentPluginObject" UCD-DLMOD-MIB::dlmodPath.1 s "$(OBJECT_PATH)$(OBJECT).so"
-	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.2 s "nstAgentPluginObject" UCD-DLMOD-MIB::dlmodPath.2 s "$(OBJECT_PATH)$(OBJECT).so"
-	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.3 s "nstAgentPluginObject" UCD-DLMOD-MIB::dlmodPath.3 s "$(OBJECT_PATH)$(OBJECT).so"
-	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.4 s "nstAgentPluginObject" UCD-DLMOD-MIB::dlmodPath.4 s "$(OBJECT_PATH)$(OBJECT).so"
+	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s "nstAgentPluginLogin" UCD-DLMOD-MIB::dlmodPath.1 s "$(OBJECT_PATH)$(OBJECT).so"
+	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.2 s "nstAgentPluginTimeInRFC3339" UCD-DLMOD-MIB::dlmodPath.2 s "$(OBJECT_PATH)$(OBJECT).so"
+	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.3 s "nstAgentPluginInt32" UCD-DLMOD-MIB::dlmodPath.3 s "$(OBJECT_PATH)$(OBJECT).so"
+	sudo snmpset localhost UCD-DLMOD-MIB::dlmodName.4 s "nstAgentPluginReleaseVersion" UCD-DLMOD-MIB::dlmodPath.4 s "$(OBJECT_PATH)$(OBJECT).so"
 
 	sudo snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i load
 	sudo snmpset localhost UCD-DLMOD-MIB::dlmodStatus.2 i load
@@ -33,6 +33,9 @@ deploy:
 	sudo snmptable localhost UCD-DLMOD-MIB::dlmodTable
 	sudo snmptranslate -M+. -m$(MIB) -Tp
 
+server: 
+    sudo snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion ,dlmod
+	
 test:
 
 	sudo snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentPluginLogin.0
