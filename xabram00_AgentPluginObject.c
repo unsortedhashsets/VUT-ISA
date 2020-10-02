@@ -14,10 +14,10 @@ static int nstAgentPluginInt32_object = 0;
 static char nstAgentPluginTimeInRFC3339_object[50];
 static char nstAgentPluginReleaseVersion_object[50];
 
-static oid nstAgentPluginLogin_oid[] = {1, 3, 6, 1, 3, 22, 1};
-static oid nstAgentPluginTimeInRFC3339_oid[] = {1, 3, 6, 1, 3, 22, 2};
-static oid nstAgentPluginInt32_oid[] = {1, 3, 6, 1, 3, 22, 3};
-static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4};
+static oid nstAgentPluginLogin_oid[] = {1, 3, 6, 1, 3, 22, 1, 0};
+static oid nstAgentPluginTimeInRFC3339_oid[] = {1, 3, 6, 1, 3, 22, 2, 0};
+static oid nstAgentPluginInt32_oid[] = {1, 3, 6, 1, 3, 22, 3, 0};
+static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4, 0};
 
 /** Initializes the module_one module */
 void init_nstAgentPluginLogin(void)
