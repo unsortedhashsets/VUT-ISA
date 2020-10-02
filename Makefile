@@ -34,8 +34,8 @@ deploy:
 	sudo snmptranslate -M+. -m$(MIB) -Tp
 
 server: 
-    sudo snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion ,dlmod
-	
+	sudo snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion ,dlmod
+
 test:
 
 	sudo snmpget localhost NET-SNMP-TUTORIAL-MIB::nstAgentPluginLogin.0
