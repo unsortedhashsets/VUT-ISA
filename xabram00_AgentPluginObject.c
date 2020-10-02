@@ -9,8 +9,10 @@
 #include <sys/utsname.h>
 #include "xabram00_AgentPluginObject.h"
 
-static char nstAgentPluginLogin_object[9] = "xabram00";
+static char nstAgentPluginLogin_object[8] = "xabram00";
 static int nstAgentPluginInt32_object = 0;
+static char nstAgentPluginTimeInRFC3339_object[50];
+static char nstAgentPluginReleaseVersion_object[50];
 
 static oid nstAgentPluginLogin_oid[] = {1, 3, 6, 1, 3, 22, 1};
 static oid nstAgentPluginTimeInRFC3339_oid[] = {1, 3, 6, 1, 3, 22, 2};
@@ -74,8 +76,9 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
                                        netsnmp_agent_request_info *reqinfo,
                                        netsnmp_request_info *requests)
 {
-    char *nstAgentPluginTimeInRFC3339_object;
-    returnTimeInRFC3339(&nstAgentPluginTimeInRFC3339_object);
+    char *tmp;
+    returnTimeInRFC3339(&tmp);
+    strcpy(nstAgentPluginTimeInRFC3339_object, tmp);
     switch (reqinfo->mode)
     {
     case MODE_GET:
@@ -112,10 +115,7 @@ void returnTimeInRFC3339(char **RFC3339)
             off_sign = '-';
             off = -off;
         }
-        *RFC3339 = "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d\n",
-        tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday,
-        tm->tm_hour, tm->tm_min, tm->tm_sec,
-        off_sign, off / 3600, off % 3600;
+        *RFC3339 = "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d\n", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec, off_sign, off / 3600, off % 3600;
     }
 }
 
@@ -142,8 +142,9 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
                                         netsnmp_agent_request_info *reqinfo,
                                         netsnmp_request_info *requests)
 {
-    char *nstAgentPluginReleaseVersion_object;
-    returnSystemInformation(&nstAgentPluginReleaseVersion_object);
+    char *tmp;
+    returnSystemInformation(&tmp);
+    strcpy(nstAgentPluginReleaseVersion_object, tmp);
     switch (reqinfo->mode)
     {
     case MODE_GET:
