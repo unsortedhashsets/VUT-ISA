@@ -9,6 +9,7 @@
 #include <sys/utsname.h>
 #include "xabram00_AgentPluginObject.h"
 
+
 static char nstAgentPluginLogin_object[8] = "xabram00";
 static int nstAgentPluginInt32_object = 0;
 static char nstAgentPluginTimeInRFC3339_object[50];
@@ -202,13 +203,14 @@ init_nstAgentPluginInt32(void)
      * function. 
      */
     DEBUGMSGTL(("nstAgentPluginInt32_object",
-                "Initalizing nstAgentPluginInt32_object scalar integer.  Default value = %d\n",
+               "Initalizing nstAgentPluginInt32_object scalar integer.  Default value = %d\n",
                 nstAgentPluginInt32_object));
 
-    netsnmp_register_int_instance("nstAgentPluginInt32_object",
-                                  nstAgentPluginInt32_oid,
-                                  OID_LENGTH(nstAgentPluginInt32_oid),
-                                  &nstAgentPluginInt32_object, NULL);
+    netsnmp_register_scalar(
+        netsnmp_create_handler_registration("nstAgentPluginInt32", handle_nstAgentPluginInt32,
+                               nstAgentPluginInt32_oid, OID_LENGTH(nstAgentPluginInt32_oid),
+                               HANDLER_CAN_RWRITE
+        ));
 
     DEBUGMSGTL(("nstAgentPluginInt32_object",
                 "Done initalizing nstAgentPluginInt32_object module\n"));
@@ -218,4 +220,85 @@ void
 deinit_nstAgentPluginInt32_object(void)
 {
     unregister_mib(nstAgentPluginInt32_oid,OID_LENGTH(nstAgentPluginInt32_oid));
+}
+
+
+
+
+
+
+
+
+
+int
+handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
+                          netsnmp_handler_registration *reginfo,
+                          netsnmp_agent_request_info   *reqinfo,
+                          netsnmp_request_info         *requests)
+{
+    int ret;
+    int tmp;
+    int *cache = NULL;
+
+    /* We are never called for a GETNEXT if it's registered as a
+       "instance", as it's "magically" handled for us.  */
+
+    /* a instance handler also only hands us one request at a time, so
+       we don't need to loop over a list of requests; we'll only get one. */
+
+    switch(reqinfo->mode) {
+
+        case MODE_GET:
+            snmp_set_var_typed_value(requests->requestvb, ASN_INTEGER, (u_char *) &nstAgentPluginInt32_object, sizeof(nstAgentPluginInt32_object));
+            break;
+        /*
+         * SET REQUEST
+         *
+         * multiple states in the transaction.  See:
+         * http://www.net-snmp.org/tutorial-5/toolkit/mib_module/set-actions.jpg
+         */
+        case MODE_SET_RESERVE1:
+                /* or you could use netsnmp_check_vb_type_and_size instead */
+            ret = netsnmp_check_vb_type(requests->requestvb, ASN_INTEGER);
+            if ( ret != SNMP_ERR_NOERROR ) {
+                return ret;
+            }
+            break;
+
+        case MODE_SET_RESERVE2:
+        /*
+         * store old value for UNDO support in the future. 
+         */
+            tmp = nstAgentPluginInt32_object;
+        case MODE_SET_ACTION:
+            /*
+            * update current value 
+            */
+            nstAgentPluginInt32_object = *(requests->requestvb->val.integer);
+            DEBUGMSGTL(("testhandler", "new int32 value = %d\n", nstAgentPluginInt32_object));
+            break;
+
+        case MODE_SET_UNDO:
+            /*
+            * ack, something somewhere failed.  We reset back to the
+            * previously old value by extracting the previosuly
+            * stored information back out of the request 
+            */
+            nstAgentPluginInt32_object = tmp;
+            DEBUGMSGTL(("testhandler", "undo => int32 value = %d\n", nstAgentPluginInt32_object));
+            break;
+            
+        case MODE_SET_COMMIT:
+        case MODE_SET_FREE:
+            break;
+
+        default:
+            /* we should never get here, so this is a really bad error */
+            snmp_log(LOG_ERR, "unknown mode (%d) in handle_nstAgentPluginInt32\n", reqinfo->mode );
+            return SNMP_ERR_GENERR;
+    }
+    /*
+     * free the information cache 
+     */
+    return SNMP_ERR_NOERROR;
 }
