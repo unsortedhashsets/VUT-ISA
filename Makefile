@@ -33,9 +33,9 @@ deploy:
 	snmptable localhost UCD-DLMOD-MIB::dlmodTable
 	snmptranslate -M+. -m$(MIB) -Tp
 
-server: 
-	snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion ,dlmod
+server:
 
+	snmpd -f -L -DnstAgentPluginLogin,-DnstAgentPluginTimeInRFC3339,-DnstAgentPluginInt32,-DnstAgentPluginReleaseVersion,dlmod
 test:
 
 	snmpget localhost XABRAM00-MIB::nstAgentPluginLogin.0          || true
@@ -43,10 +43,10 @@ test:
 	snmpget localhost XABRAM00-MIB::nstAgentPluginInt32.0          || true
 	snmpget localhost XABRAM00-MIB::nstAgentPluginReleaseVersion.0 || true
 	
-	snmpget localhost .1.3.6.1.3.22.1 || true
-	snmpget localhost .1.3.6.1.3.22.2 || true
-	snmpget localhost .1.3.6.1.3.22.3 || true
-	snmpget localhost .1.3.6.1.3.22.4 || true
+	snmpget localhost .1.3.6.1.3.22.1.0 || true
+	snmpget localhost .1.3.6.1.3.22.2.0 || true
+	snmpget localhost .1.3.6.1.3.22.3.0 || true
+	snmpget localhost .1.3.6.1.3.22.4.0 || true
 
 undeploy:
 

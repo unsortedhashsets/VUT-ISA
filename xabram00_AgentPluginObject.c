@@ -236,9 +236,8 @@ handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
                           netsnmp_agent_request_info   *reqinfo,
                           netsnmp_request_info         *requests)
 {
-    int ret;
-    int tmp;
-    int *cache = NULL;
+    int ret = 0;
+    int tmp = 0;
 
     /* We are never called for a GETNEXT if it's registered as a
        "instance", as it's "magically" handled for us.  */
