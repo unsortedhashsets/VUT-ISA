@@ -176,8 +176,7 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             break;
         case MODE_SET_RESERVE1:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_RESERVE1: nstAgentPluginInt32 check value type",
-                        nstAgentPluginInt32_object));
+                        "MODE_SET_RESERVE1: nstAgentPluginInt32 check value type"));
             ret = netsnmp_check_vb_type(requests->requestvb, ASN_INTEGER);
             if (ret != SNMP_ERR_NOERROR){
                 return ret;
@@ -296,8 +295,7 @@ void init_nstAgentPluginTimeInRFC3339(void){
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
                 "Initializing nstAgentPluginTimeInRFC3339 module\n"));
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
-                "Initalizing nstAgentPluginTimeInRFC3339 string.\n",
-                                     nstAgentPluginLogin_object));
+                "Initalizing nstAgentPluginTimeInRFC3339 string.\n"));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginTimeInRFC3339",
                                        handle_nstAgentPluginTimeInRFC3339,
@@ -342,8 +340,7 @@ void init_nstAgentPluginReleaseVersion(void){
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
                 "Initializing nstAgentPluginReleaseVersion module\n"));
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
-                "Initalizing nstAgentPluginReleaseVersion string.\n",
-                                      nstAgentPluginLogin_object));
+                "Initalizing nstAgentPluginReleaseVersion string.\n"));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginReleaseVersion",
                                              handle_nstAgentPluginReleaseVersion,

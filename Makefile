@@ -35,7 +35,7 @@ deploy:
 
 server:
 
-	snmpd -f -L -DnstAgentPluginLogin,-DnstAgentPluginTimeInRFC3339,-DnstAgentPluginInt32,-DnstAgentPluginReleaseVersion,dlmod
+	snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion,dlmod
 test:
 
 	snmpget localhost XABRAM00-MIB::nstAgentPluginLogin.0          || true
