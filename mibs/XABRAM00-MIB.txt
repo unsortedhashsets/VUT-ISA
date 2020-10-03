@@ -8,15 +8,12 @@ dod OBJECT IDENTIFIER          ::= { org 6 }
 internet OBJECT IDENTIFIER     ::= { dod 1 }
 experimental OBJECT IDENTIFIER ::= { internet 3 }
 
--- OID.1.3.6.1.3.22
--- iso.org.dod.internet.experimental.(22 = nstAgentModules)
-
 nstAgentPlugins MODULE-IDENTITY
-   LAST-UPDATED "202009300000Z"
+   LAST-UPDATED "202010030000Z"
    ORGANIZATION "BUT FIT - Mikhail Abramov"
    CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
    DESCRIPTION  "A simple MIB for ISA purposes."
-   ::= { experimental 22 }    
+   ::= { experimental 22 }
 
 nstAgentPluginLogin OBJECT-TYPE
     SYNTAX OCTET STRING (SIZE(8))
@@ -27,7 +24,7 @@ nstAgentPluginLogin OBJECT-TYPE
     ::= { nstAgentPlugins 1 }
 
 nstAgentPluginTimeInRFC3339 OBJECT-TYPE
-    SYNTAX OCTET STRING (SIZE(0..50))
+    SYNTAX OCTET STRING (SIZE(28))
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION

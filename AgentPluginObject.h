@@ -1,5 +1,5 @@
-#ifndef xabram00_AgentPluginObject_h
-#define xabram00_AgentPluginObject_h
+#ifndef AgentPluginObject_h
+#define AgentPluginObject_h
 
 /* function declarations */
 void init_nstAgentPluginLogin(void);
@@ -20,4 +20,4 @@ void deinit_nstAgentPluginReleaseVersion(void);
 void returnTimeInRFC3339(char ** RFC3339);
 void returnSystemInformation(char ** ReleaseVersion);
 
-#endif /* xabram00_AgentPluginObject_h */
+#endif /* AgentPluginObject_h */

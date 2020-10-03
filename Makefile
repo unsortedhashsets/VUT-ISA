@@ -4,7 +4,7 @@ CFLAGS=-I. `net-snmp-config --cflags`
 
 DLFLAGS=-fPIC -shared
 
-OBJECT=xabram00_AgentPluginObject
+OBJECT=AgentPluginObject
 OBJECT_PATH=/home/user/VUT-ISA/
 MIB=XABRAM00-MIB
 
