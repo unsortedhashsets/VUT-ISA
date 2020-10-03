@@ -16,7 +16,7 @@ nstAgentPlugins MODULE-IDENTITY
    ::= { experimental 22 }
 
 nstAgentPluginLogin OBJECT-TYPE
-    SYNTAX OCTET STRING (SIZE(8))
+    SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION
@@ -24,7 +24,7 @@ nstAgentPluginLogin OBJECT-TYPE
     ::= { nstAgentPlugins 1 }
 
 nstAgentPluginTimeInRFC3339 OBJECT-TYPE
-    SYNTAX OCTET STRING (SIZE(28))
+    SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION
@@ -40,7 +40,7 @@ nstAgentPluginInt32 OBJECT-TYPE
     ::= { nstAgentPlugins 3 }
 
 nstAgentPluginReleaseVersion OBJECT-TYPE
-    SYNTAX OCTET STRING (SIZE(0..50))
+    SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION

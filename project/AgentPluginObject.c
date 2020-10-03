@@ -205,7 +205,7 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             break;
         case MODE_SET_RESERVE1:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_RESERVE1: nstAgentPluginInt32 check value type"));
+                        "MODE_SET_RESERVE1: nstAgentPluginInt32 check value type\n"));
             ret = netsnmp_check_vb_type(requests->requestvb, ASN_INTEGER);
             if (ret != SNMP_ERR_NOERROR){
                 return ret;
@@ -237,10 +237,10 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             break;
         case MODE_SET_COMMIT:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_COMMIT: nstAgentPluginInt32 skip"));
+                        "MODE_SET_COMMIT: nstAgentPluginInt32 skip\n"));
         case MODE_SET_FREE:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_FREE: nstAgentPluginInt32 skip"));
+                        "MODE_SET_FREE: nstAgentPluginInt32 skip\n"));
             break;
         default:
             DEBUGMSGTL(("nstAgentPluginInt32", 

@@ -8,6 +8,11 @@ OBJECT=AgentPluginObject
 OBJECT_PATH=/home/user/VUT-ISA/
 MIB=XABRAM00-MIB
 
+NO_COLOR=\033[0m'
+TEST_COLOR='\033[93m
+OK_COLOR='\033[92m
+ERROR_COLOR='\033[91m
+
 build: $(OBJECT).c Makefile
 	$(CC) $(CFLAGS) $(DLFLAGS) -c -o $(OBJECT).o $(OBJECT).c
 	$(CC) $(CFLAGS) $(DLFLAGS) -o $(OBJECT).so $(OBJECT).o
@@ -38,16 +43,91 @@ server:
 	snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion,dlmod
 test:
 
-	snmpget localhost XABRAM00-MIB::nstAgentPluginLogin.0          || true
-	snmpget localhost XABRAM00-MIB::nstAgentPluginTimeInRFC3339.0  || true
-	snmpget localhost XABRAM00-MIB::nstAgentPluginInt32.0          || true
-	snmpget localhost XABRAM00-MIB::nstAgentPluginReleaseVersion.0 || true
-	
-	snmpget localhost .1.3.6.1.3.22.1.0 || true
-	snmpget localhost .1.3.6.1.3.22.2.0 || true
-	snmpget localhost .1.3.6.1.3.22.3.0 || true
-	snmpget localhost .1.3.6.1.3.22.4.0 || true
+	@echo -e $(OK_COLOR)LOCAL OK TESTS (all should pass) $(NO_COLOR)
 
+	snmpget localhost XABRAM00-MIB::nstAgentPluginLogin.0
+	snmpget localhost XABRAM00-MIB::nstAgentPluginTimeInRFC3339.0
+	snmpget localhost XABRAM00-MIB::nstAgentPluginInt32.0
+	snmpget localhost XABRAM00-MIB::nstAgentPluginReleaseVersion.0
+	
+	snmpget localhost .1.3.6.1.3.22.1.0
+	snmpget localhost .1.3.6.1.3.22.2.0
+	snmpget localhost .1.3.6.1.3.22.3.0
+	snmpget localhost .1.3.6.1.3.22.4.0
+
+	@echo -e $(OK_COLOR)REMOTE OK TESTS passed $(NO_COLOR)
+
+	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
+	@echo -e $(TEST_COLOR)notWritable tests $(NO_COLOR)
+	snmpset localhost XABRAM00-MIB::nstAgentPluginLogin.0 s "TEST"          || true        
+	snmpset localhost XABRAM00-MIB::nstAgentPluginTimeInRFC3339.0 s "TEST"  || true        
+	snmpset localhost XABRAM00-MIB::nstAgentPluginReleaseVersion.0 s "TEST" || true
+
+	snmpset localhost .1.3.6.1.3.22.1.0 s "TEST" || true 	  
+	snmpset localhost .1.3.6.1.3.22.2.0 s "TEST" || true   
+	snmpset localhost .1.3.6.1.3.22.4.0 s "TEST" || true    
+
+	@echo -e $(TEST_COLOR)Error value tests $(NO_COLOR)
+
+	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 s "TEST"      || true
+	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i 2147483648  || true
+	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i -2147483649 || true
+	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
+
+	snmpset localhost .1.3.6.1.3.22.3.0 s "TEST"      || true
+
+	@echo -e $(TEST_COLOR)Problem area $(NO_COLOR)
+	snmpset localhost .1.3.6.1.3.22.3.0 i 21474836486  || true
+	snmpset localhost .1.3.6.1.3.22.3.0 i 21474836486  || true
+	snmpset localhost .1.3.6.1.3.22.3.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
+
+	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
+
+remote-test:
+
+	@echo -e $(OK_COLOR)REMOTE OK TESTS (all should pass) $(NO_COLOR)
+
+	snmpget -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginLogin.0         
+	snmpget -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginTimeInRFC3339.0 
+	snmpget -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0         
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0 i 1234  
+	snmpget -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0         
+	snmpget -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginReleaseVersion.0
+		
+	snmpget -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.1.0 	  
+	snmpget -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.2.0    
+	snmpget -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0    
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0 i 0
+	snmpget -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0    
+	snmpget -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.4.0    
+
+	@echo -e $(OK_COLOR)REMOTE OK TESTS passed $(NO_COLOR)
+
+	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
+	@echo -e $(TEST_COLOR)notWritable tests $(NO_COLOR)
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginLogin.0 s "TEST"          || true        
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginTimeInRFC3339.0 s "TEST"  || true        
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginReleaseVersion.0 s "TEST" || true
+
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.1.0 s "TEST" || true 	  
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.2.0 s "TEST" || true   
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.4.0 s "TEST" || true    
+
+	@echo -e $(TEST_COLOR)Error value tests $(NO_COLOR)
+
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0 s "TEST"      || true
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0 i 2147483648  || true
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0 i -2147483649 || true
+	snmpset -v 2c -c public 192.168.56.4 XABRAM00-MIB::nstAgentPluginInt32.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
+
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0 s "TEST"      || true
+
+	@echo -e $(TEST_COLOR)Problem area $(NO_COLOR)
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0 i 21474836486  || true
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0 i 21474836486  || true
+	snmpset -v 2c -c public 192.168.56.4 .1.3.6.1.3.22.3.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
+
+	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
 undeploy:
 
 	snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i unload
