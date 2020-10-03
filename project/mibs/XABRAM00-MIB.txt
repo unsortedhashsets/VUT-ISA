@@ -1,12 +1,10 @@
 XABRAM00-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS
-	OBJECT-TYPE, Integer32,	MODULE-IDENTITY FROM SNMPv2-SMI;
-
-org OBJECT IDENTIFIER          ::= { iso 3 }
-dod OBJECT IDENTIFIER          ::= { org 6 }
-internet OBJECT IDENTIFIER     ::= { dod 1 }
-experimental OBJECT IDENTIFIER ::= { internet 3 }
+	OBJECT-TYPE, 
+    experimental, 
+    Integer32,	
+    MODULE-IDENTITY FROM SNMPv2-SMI;
 
 nstAgentPlugins MODULE-IDENTITY
    LAST-UPDATED "202010030000Z"

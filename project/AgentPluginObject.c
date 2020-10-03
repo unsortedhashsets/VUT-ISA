@@ -19,7 +19,7 @@
  *                                    Objects deffinitions:                              *
  *****************************************************************************************/
 
-static char nstAgentPluginLogin_object[8] = "xabram00";
+static char nstAgentPluginLogin_object[8]  = "xabram00";
 static int  nstAgentPluginInt32_object     = 0;
 static char nstAgentPluginTimeInRFC3339_object[28];
 static char nstAgentPluginReleaseVersion_object[50];
@@ -105,7 +105,9 @@ void returnTimeInRFC3339(char **RFC3339){
 /*
  * Function:  handle_nstAgentPluginLogin 
  * --------------------
- *
+ *  Net-SNMP Agent handler
+ *  http://www.net-snmp.org/dev/agent/group__handler.html#details
+ * 
  *  @param netsnmp_mib_handler:
  *  @param netsnmp_handler_registration:
  *  @param netsnmp_agent_request_info:
@@ -119,7 +121,7 @@ int handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
     switch (reqinfo->mode){
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginLogin", 
-                        "MODE_GET: nstAgentPluginLogin string value = %s\n",
+                        "MODE_GET: string value = %s\n",
                         nstAgentPluginLogin_object));
             snmp_set_var_typed_value(requests->requestvb,
                                      ASN_OCTET_STR,
@@ -128,10 +130,10 @@ int handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
             break;
         default:
             DEBUGMSGTL(("nstAgentPluginLogin", 
-                        "Unknown mode (%d) in handle_nstAgentPluginLogin\n",
+                        "Unknown mode (%d)\n",
                         reqinfo->mode));
             snmp_log(LOG_ERR,
-                     "Unknown mode (%d) in handle_nstAgentPluginLogin\n",
+                     "Unknown mode (%d)\n",
                      reqinfo->mode);
             return SNMP_ERR_GENERR;
     }
@@ -141,7 +143,9 @@ int handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
 /*
  * Function:  handle_nstAgentPluginTimeInRFC3339 
  * --------------------
- *
+ *  Net-SNMP Agent handler
+ *  http://www.net-snmp.org/dev/agent/group__handler.html#details
+ * 
  *  @param netsnmp_mib_handler:
  *  @param netsnmp_handler_registration:
  *  @param netsnmp_agent_request_info:
@@ -158,7 +162,7 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
     switch (reqinfo->mode)    {
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
-                        "MODE_GET: nstAgentPluginTimeInRFC3339 string value = %s\n",
+                        "MODE_GET: string value = %s\n",
                         nstAgentPluginTimeInRFC3339_object));
             snmp_set_var_typed_value(requests->requestvb, 
                                      ASN_OCTET_STR,
@@ -167,10 +171,10 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
             break;
         default:
             DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
-                        "Unknown mode (%d) in handle_nstAgentPluginTimeInRFC3339\n",
+                        "Unknown mode (%d)\n",
                         reqinfo->mode));
             snmp_log(LOG_ERR,
-                     "Unknown mode (%d) in handle_nstAgentPluginLogin\n",
+                     "Unknown mode (%d)\n",
                      reqinfo->mode);
             return SNMP_ERR_GENERR;
     }
@@ -180,7 +184,9 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
 /*
  * Function:  handle_nstAgentPluginInt32 
  * --------------------
- *
+ *  Net-SNMP Agent handler
+ *  http://www.net-snmp.org/dev/agent/group__handler.html#details
+ * 
  *  @param netsnmp_mib_handler:
  *  @param netsnmp_handler_registration:
  *  @param netsnmp_agent_request_info:
@@ -196,7 +202,7 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
     switch (reqinfo->mode)    {
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginInt32", 
-                        "MODE_GET: nstAgentPluginInt32 int32 value = %d\n",
+                        "MODE_GET: int32 value = %d\n",
                         nstAgentPluginInt32_object));
             snmp_set_var_typed_value(requests->requestvb,
                                      ASN_INTEGER,
@@ -205,7 +211,7 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             break;
         case MODE_SET_RESERVE1:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_RESERVE1: nstAgentPluginInt32 check value type\n"));
+                        "MODE_SET_RESERVE1: check value type\n"));
             ret = netsnmp_check_vb_type(requests->requestvb, ASN_INTEGER);
             if (ret != SNMP_ERR_NOERROR){
                 return ret;
@@ -213,41 +219,41 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             break;
         case MODE_SET_RESERVE2:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_RESERVE2: nstAgentPluginInt32 reserve value = %d\n",
+                        "MODE_SET_RESERVE2: reserve value = %d\n",
                         nstAgentPluginInt32_object));
             tmp = nstAgentPluginInt32_object;
         case MODE_SET_ACTION:
             if (*(requests->requestvb->val.integer) < INT32_MIN ||
                 *(requests->requestvb->val.integer) > INT32_MAX){
                 DEBUGMSGTL(("nstAgentPluginInt32",
-                            "MODE_SET_RESERVE2: nstAgentPluginInt32 Wrong value = %lu\n",
+                            "MODE_SET_ACTION: Wrong value = %lu\n",
                             *(requests->requestvb->val.integer)));
                 return SNMP_ERR_WRONGVALUE;
             }
             nstAgentPluginInt32_object = *(requests->requestvb->val.integer);
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_RESERVE2: nstAgentPluginInt32 new int32 value = %d\n",
+                        "MODE_SET_ACTION: new int32 value = %d\n",
                         nstAgentPluginInt32_object));
             break;
         case MODE_SET_UNDO:
             nstAgentPluginInt32_object = tmp;
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_UNDO: nstAgentPluginInt32 value = %d\n",
+                        "MODE_SET_UNDO: value = %d\n",
                         nstAgentPluginInt32_object));
             break;
         case MODE_SET_COMMIT:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_COMMIT: nstAgentPluginInt32 skip\n"));
+                        "MODE_SET_COMMIT: skip\n"));
         case MODE_SET_FREE:
             DEBUGMSGTL(("nstAgentPluginInt32",
-                        "MODE_SET_FREE: nstAgentPluginInt32 skip\n"));
+                        "MODE_SET_FREE: skip\n"));
             break;
         default:
             DEBUGMSGTL(("nstAgentPluginInt32", 
-                        "Unknown mode (%d) in handle_nstAgentPluginInt32\n",
+                        "Unknown mode (%d)\n",
                         reqinfo->mode));
             snmp_log(LOG_ERR, 
-                     "unknown mode (%d) in handle_nstAgentPluginInt32\n",
+                     "unknown mode (%d)\n",
                      reqinfo->mode);
             return SNMP_ERR_GENERR;
     }
@@ -257,7 +263,9 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
 /*
  * Function:  handle_nstAgentPluginReleaseVersion 
  * --------------------
- *
+ *  Net-SNMP Agent handler
+ *  http://www.net-snmp.org/dev/agent/group__handler.html#details
+ * 
  *  @param netsnmp_mib_handler:
  *  @param netsnmp_handler_registration:
  *  @param netsnmp_agent_request_info:
@@ -274,7 +282,7 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
     switch (reqinfo->mode){
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginReleaseVersion", 
-                        "MODE_GET: nstAgentPluginReleaseVersion string value = %s\n",
+                        "MODE_GET: string value = %s\n",
                         nstAgentPluginReleaseVersion_object));
             snmp_set_var_typed_value(requests->requestvb,
                                      ASN_OCTET_STR,
@@ -283,10 +291,10 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
             break;
         default:
             DEBUGMSGTL(("nstAgentPluginReleaseVersion", 
-                        "Unknown mode (%d) in handle_nstAgentPluginReleaseVersion\n",
+                        "Unknown mode (%d)\n",
                         reqinfo->mode));
             snmp_log(LOG_ERR,
-                     "Unknown mode (%d) in handle_nstAgentPluginReleaseVersion\n",
+                     "Unknown mode (%d)\n",
                      reqinfo->mode);
             return SNMP_ERR_GENERR;
     }

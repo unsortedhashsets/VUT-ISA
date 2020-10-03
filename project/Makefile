@@ -5,7 +5,7 @@ CFLAGS=-I. `net-snmp-config --cflags`
 DLFLAGS=-fPIC -shared
 
 OBJECT=AgentPluginObject
-OBJECT_PATH=/home/user/VUT-ISA/
+OBJECT_PATH=/home/user/VUT-ISA/project/
 MIB=XABRAM00-MIB
 
 NO_COLOR=\033[0m'
@@ -72,14 +72,12 @@ test:
 	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 s "TEST"      || true
 	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i 2147483648  || true
 	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i -2147483649 || true
-	snmpset localhost XABRAM00-MIB::nstAgentPluginInt32.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
 
 	snmpset localhost .1.3.6.1.3.22.3.0 s "TEST"      || true
 
 	@echo -e $(TEST_COLOR)Problem area $(NO_COLOR)
 	snmpset localhost .1.3.6.1.3.22.3.0 i 21474836486  || true
-	snmpset localhost .1.3.6.1.3.22.3.0 i 21474836486  || true
-	snmpset localhost .1.3.6.1.3.22.3.0 i -100000000000000000000000000000000000000000000000000000000000000000000000000000 || true
+	snmpset localhost .1.3.6.1.3.22.3.0 i -1000000000000000000000000000000000000 || true
 
 	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
 
