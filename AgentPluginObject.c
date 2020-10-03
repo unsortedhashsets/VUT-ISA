@@ -28,10 +28,10 @@ static char nstAgentPluginReleaseVersion_object[50];
  *                                     OID deffinitions:                                 *
  *****************************************************************************************/
 
-static oid nstAgentPluginLogin_oid[]          = {1, 3, 6, 1, 3, 22, 1, 0};
-static oid nstAgentPluginTimeInRFC3339_oid[]  = {1, 3, 6, 1, 3, 22, 2, 0};
-static oid nstAgentPluginInt32_oid[]          = {1, 3, 6, 1, 3, 22, 3, 0};
-static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4, 0};
+static oid nstAgentPluginLogin_oid[]          = {1, 3, 6, 1, 3, 22, 1 };
+static oid nstAgentPluginTimeInRFC3339_oid[]  = {1, 3, 6, 1, 3, 22, 2 };
+static oid nstAgentPluginInt32_oid[]          = {1, 3, 6, 1, 3, 22, 3 };
+static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4 };
 
 /*****************************************************************************************
  *                               Additionals functions block:                            *
