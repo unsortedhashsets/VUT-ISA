@@ -102,7 +102,16 @@ void returnTimeInRFC3339(char **RFC3339){
  *                               - handle_nstAgentPluginReleaseVersion                   *
  *****************************************************************************************/
 
-
+/*
+ * Function:  handle_nstAgentPluginLogin 
+ * --------------------
+ *
+ *  @param netsnmp_mib_handler:
+ *  @param netsnmp_handler_registration:
+ *  @param netsnmp_agent_request_info:
+ *  @param netsnmp_request_info:
+ *  @return int: ERROR number or 0
+ */
 int handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
                                netsnmp_handler_registration *reginfo,
                                netsnmp_agent_request_info *reqinfo,
@@ -129,6 +138,16 @@ int handle_nstAgentPluginLogin(netsnmp_mib_handler *handler,
     return SNMP_ERR_NOERROR;
 }
 
+/*
+ * Function:  handle_nstAgentPluginTimeInRFC3339 
+ * --------------------
+ *
+ *  @param netsnmp_mib_handler:
+ *  @param netsnmp_handler_registration:
+ *  @param netsnmp_agent_request_info:
+ *  @param netsnmp_request_info:
+ *  @return int: ERROR number or 0
+ */
 int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
                                        netsnmp_handler_registration *reginfo,
                                        netsnmp_agent_request_info *reqinfo,
@@ -158,6 +177,16 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
     return SNMP_ERR_NOERROR;
 }
 
+/*
+ * Function:  handle_nstAgentPluginInt32 
+ * --------------------
+ *
+ *  @param netsnmp_mib_handler:
+ *  @param netsnmp_handler_registration:
+ *  @param netsnmp_agent_request_info:
+ *  @param netsnmp_request_info:
+ *  @return int: ERROR number or 0
+ */
 int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
                                netsnmp_handler_registration *reginfo,
                                netsnmp_agent_request_info *reqinfo,
@@ -225,6 +254,16 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
     return SNMP_ERR_NOERROR;
 }
 
+/*
+ * Function:  handle_nstAgentPluginReleaseVersion 
+ * --------------------
+ *
+ *  @param netsnmp_mib_handler:
+ *  @param netsnmp_handler_registration:
+ *  @param netsnmp_agent_request_info:
+ *  @param netsnmp_request_info:
+ *  @return int: ERROR number or 0
+ */
 int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
                                         netsnmp_handler_registration *reginfo,
                                         netsnmp_agent_request_info *reqinfo,
