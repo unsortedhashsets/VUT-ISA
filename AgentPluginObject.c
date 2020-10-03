@@ -188,9 +188,10 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
                         nstAgentPluginInt32_object));
             tmp = nstAgentPluginInt32_object;
         case MODE_SET_ACTION:
-            if (INT32_MIN < *(requests->requestvb->val.integer) < INT32_MAX){
+            if (*(requests->requestvb->val.integer) > INT32_MIN &&
+                *(requests->requestvb->val.integer) > INT32_MAX){
                 DEBUGMSGTL(("nstAgentPluginInt32",
-                            "MODE_SET_RESERVE2: nstAgentPluginInt32 Wrong value = %d\n",
+                            "MODE_SET_RESERVE2: nstAgentPluginInt32 Wrong value = %lu\n",
                             *(requests->requestvb->val.integer)));
                 return SNMP_ERR_WRONGVALUE;
             }
