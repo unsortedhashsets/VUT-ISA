@@ -1,12 +1,9 @@
 /*****************************************************************************************
  *                        Project Implementation for IPK 2020/2021                       *
  *       Implement MIB module and dynamically loadable SNMP agent extension net-snmp.    *
- *                                   Date: 03.10.2020                                    *
+ *                                   Date: 15.10.2020                                    *
  *                                Author: Mikhail Abramov                                *
  *                               xabram00@stud.fit.vutbr.cz                              *
- *****************************************************************************************/
-/*****************************************************************************************
- *                                    Objects deffinitions:                              *
  *****************************************************************************************/
 
 #include <net-snmp/net-snmp-config.h>
@@ -19,8 +16,8 @@
  *                                    Objects deffinitions:                              *
  *****************************************************************************************/
 
-static char nstAgentPluginLogin_object[8]  = "xabram00";
-static int  nstAgentPluginInt32_object     = 0;
+static char nstAgentPluginLogin_object[8] = "xabram00";
+static int  nstAgentPluginInt32_object = 0;
 static char nstAgentPluginTimeInRFC3339_object[28];
 static char nstAgentPluginReleaseVersion_object[50];
 
@@ -32,6 +29,7 @@ static oid nstAgentPluginLogin_oid[]          = {1, 3, 6, 1, 3, 22, 1 };
 static oid nstAgentPluginTimeInRFC3339_oid[]  = {1, 3, 6, 1, 3, 22, 2 };
 static oid nstAgentPluginInt32_oid[]          = {1, 3, 6, 1, 3, 22, 3 };
 static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4 };
+
 
 /*****************************************************************************************
  *                               Additionals functions block:                            *
@@ -45,13 +43,12 @@ static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4 };
  * Get information about OS release version (use sys/utsname.h library):
  *    example output: ""
  *
- *  @param ReleaseVersion: is a pointer on the pointer provided as argument
- *  @return void -> updates pointer on the new output value
+ *  @return void -> updates static output value
  */
-void returnSystemInformation(char **ReleaseVersion){
+void returnSystemInformation(){
     struct utsname detect;
     uname(&detect);
-    *ReleaseVersion = detect.release;
+    strcpy(nstAgentPluginReleaseVersion_object, detect.release);
 }
 
 /*
@@ -61,16 +58,15 @@ void returnSystemInformation(char **ReleaseVersion){
  *    https://tools.ietf.org/html/rfc3339
  *  example output: ""
  *
- *  @param RFC3339: is a pointer on the pointer provided as argument
- *  @return void -> updates pointer on the new output value
+ *  @return void -> updates static output value
  */
-void returnTimeInRFC3339(char **RFC3339){
+void returnTimeInRFC3339(){
     time_t now = time(NULL);
     struct tm *tm;
     int off_sign;
     int off;
     if ((tm = localtime(&now)) == NULL){
-        *RFC3339 = "Error during time check";
+        strcpy(nstAgentPluginTimeInRFC3339_object, "Error during time check");
     }
     else{
         off_sign = '+';
@@ -80,7 +76,8 @@ void returnTimeInRFC3339(char **RFC3339){
             off = -off;
         }
         char tmp[50];
-        sprintf(tmp, "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d",
+        sprintf(nstAgentPluginTimeInRFC3339_object,
+                "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d",
                 tm->tm_year + 1900,
                 tm->tm_mon + 1,
                 tm->tm_mday,
@@ -90,9 +87,9 @@ void returnTimeInRFC3339(char **RFC3339){
                 off_sign,
                 off / 3600,
                 off % 3600);
-        *RFC3339 = tmp;
     }
 }
+
 
 /*****************************************************************************************
  *                                 Handlers functions block:                             *
@@ -156,9 +153,7 @@ int handle_nstAgentPluginTimeInRFC3339(netsnmp_mib_handler *handler,
                                        netsnmp_handler_registration *reginfo,
                                        netsnmp_agent_request_info *reqinfo,
                                        netsnmp_request_info *requests){
-    char *tmp;
-    returnTimeInRFC3339(&tmp);
-    strcpy(nstAgentPluginTimeInRFC3339_object, tmp);
+    returnTimeInRFC3339();
     switch (reqinfo->mode)    {
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
@@ -201,6 +196,7 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
     int tmp = 0;
     switch (reqinfo->mode)    {
         case MODE_GET:
+        
             DEBUGMSGTL(("nstAgentPluginInt32", 
                         "MODE_GET: int32 value = %d\n",
                         nstAgentPluginInt32_object));
@@ -210,6 +206,9 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
                                      sizeof(nstAgentPluginInt32_object));
             break;
         case MODE_SET_RESERVE1:
+            /*
+            * check type 
+            */
             DEBUGMSGTL(("nstAgentPluginInt32",
                         "MODE_SET_RESERVE1: check value type\n"));
             ret = netsnmp_check_vb_type(requests->requestvb, ASN_INTEGER);
@@ -218,11 +217,18 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             }
             break;
         case MODE_SET_RESERVE2:
+            /*
+            * reserve old value 
+            */
             DEBUGMSGTL(("nstAgentPluginInt32",
                         "MODE_SET_RESERVE2: reserve value = %d\n",
                         nstAgentPluginInt32_object));
             tmp = nstAgentPluginInt32_object;
         case MODE_SET_ACTION:
+            /*
+            * update current value
+            * Additional check in case of int64
+            */
             if (*(requests->requestvb->val.integer) < INT32_MIN ||
                 *(requests->requestvb->val.integer) > INT32_MAX){
                 DEBUGMSGTL(("nstAgentPluginInt32",
@@ -236,6 +242,11 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
                         nstAgentPluginInt32_object));
             break;
         case MODE_SET_UNDO:
+            /*
+            * ack, something somewhere failed.  We reset back to the
+            * previously old value by extracting the previosuly
+            * stored information back out of the request 
+            */
             nstAgentPluginInt32_object = tmp;
             DEBUGMSGTL(("nstAgentPluginInt32",
                         "MODE_SET_UNDO: value = %d\n",
@@ -245,6 +256,11 @@ int handle_nstAgentPluginInt32(netsnmp_mib_handler *handler,
             DEBUGMSGTL(("nstAgentPluginInt32",
                         "MODE_SET_COMMIT: skip\n"));
         case MODE_SET_FREE:
+            /*
+            * the only thing to do here is free the old memdup'ed
+            * value, but it's auto-freed by the datalist recovery, so
+            * we don't have anything to actually do here 
+            */
             DEBUGMSGTL(("nstAgentPluginInt32",
                         "MODE_SET_FREE: skip\n"));
             break;
@@ -276,9 +292,7 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
                                         netsnmp_handler_registration *reginfo,
                                         netsnmp_agent_request_info *reqinfo,
                                         netsnmp_request_info *requests){
-    char *tmp;
-    returnSystemInformation(&tmp);
-    strcpy(nstAgentPluginReleaseVersion_object, tmp);
+    returnSystemInformation();
     switch (reqinfo->mode){
         case MODE_GET:
             DEBUGMSGTL(("nstAgentPluginReleaseVersion", 
@@ -300,6 +314,7 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
     }
     return SNMP_ERR_NOERROR;
 }
+
 
 /*****************************************************************************************
  *                               Initialization functions block:                         *
@@ -398,8 +413,6 @@ void init_nstAgentPluginReleaseVersion(void){
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
                 "Done initalizing nstAgentPluginReleaseVersion module\n"));
 }
-
-
 
 
 /*****************************************************************************************

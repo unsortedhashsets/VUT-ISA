@@ -1,18 +1,34 @@
 XABRAM00-MIB DEFINITIONS ::= BEGIN
 
-IMPORTS
-	OBJECT-TYPE, 
-    experimental, 
-    Integer32,	
-    MODULE-IDENTITY FROM SNMPv2-SMI;
+--
+-- Project Implementation for IPK 2020/2021
+-- Implement MIB module and dynamically loadable SNMP agent extension net-snmp.
+-- Date: 15.10.2020
+-- Author: Mikhail Abramov
+-- xabram00@stud.fit.vutbr.cz
+--
 
+IMPORTS
+	OBJECT-TYPE,                     -- import scalar objects)
+    experimental,                    -- import OID tree till experimental
+    Integer32,	                     -- import integer32 type
+    MODULE-IDENTITY FROM SNMPv2-SMI; -- import module identity block for short description
+
+--
+-- Short module identity block with some information about mib
+--
 nstAgentPlugins MODULE-IDENTITY
-   LAST-UPDATED "202010030000Z"
+   LAST-UPDATED "202010150000Z"
    ORGANIZATION "BUT FIT - Mikhail Abramov"
    CONTACT-INFO "email: xabram00@stud.fit.vutbr.cz"
    DESCRIPTION  "A simple MIB for ISA purposes."
    ::= { experimental 22 }
 
+--
+-- Scalar objects for ISA 2020/2021
+-- all information about modules can be found in objects:
+-- type, access,status, etc.
+--
 nstAgentPluginLogin OBJECT-TYPE
     SYNTAX OCTET STRING
     MAX-ACCESS read-only
@@ -26,7 +42,7 @@ nstAgentPluginTimeInRFC3339 OBJECT-TYPE
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION
-        "Student login"
+        "Time in RFC3339"
     ::= { nstAgentPlugins 2 }
 
 nstAgentPluginInt32 OBJECT-TYPE
@@ -42,7 +58,7 @@ nstAgentPluginReleaseVersion OBJECT-TYPE
     MAX-ACCESS read-only
     STATUS current
     DESCRIPTION
-        "Student login"
+        "Information about OS release version"
     ::= { nstAgentPlugins 4 }
 
 END
