@@ -75,7 +75,6 @@ void returnTimeInRFC3339(){
             off_sign = '-';
             off = -off;
         }
-        char tmp[50];
         sprintf(nstAgentPluginTimeInRFC3339_object,
                 "%d-%d-%dT%02d:%02d:%02d%c%02d:%02d",
                 tm->tm_year + 1900,

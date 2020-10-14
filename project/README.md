@@ -3,10 +3,10 @@ Implementation of the MIB module and dynamically loadable SNMP agent extension f
 
 # Compilation
 * Compile the program by entering the command `make` or `make build`.
-* In case of if is necessary to use agent extension through the MIB name (for example for the `make test` and `make remote-test` commands) additionally use command `make mib` to copy the MIB file to special MIB's directory and see the information about the modules.
+* `(su/sudo)` In case of if is necessary to use agent extension through the MIB name (for example for the `make test` and `make remote-test` commands) additionally use command `make mib` to copy the MIB file to special MIB's directory and see the information about the modules.
 
 # Launch
-* Start server on the additional terminal with command `make server` it will launch server with debug mode for needed modules.
+* `(su/sudo)` Start server on the additional terminal with command `make server` it will launch server with debug mode for needed modules.
 * Use `make deploy` command to deploy agent extension into the running server (you will be able to see logs on the server terminal)
 * If you are still on the agent's machine you also can use some local manual tests with command `make tests` to see the results and logs on the server part.
 * On the other remote machine you can do commands: `make mib` (to copy mib information), and use `make remote-test <server-machine-IP>` (take care about firewall rules).

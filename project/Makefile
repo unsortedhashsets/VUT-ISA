@@ -5,7 +5,8 @@ CFLAGS=-I. `net-snmp-config --cflags`
 DLFLAGS=-fPIC -shared
 
 OBJECT=AgentPluginObject
-OBJECT_PATH=/home/user/VUT-ISA/project/
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 MIB=XABRAM00-MIB
 
 NO_COLOR=\033[0m'
@@ -18,7 +19,7 @@ build: $(OBJECT).c Makefile
 	$(CC) $(CFLAGS) $(DLFLAGS) -o $(OBJECT).so $(OBJECT).o
 
 mib:
-	cp mibs/$(MIB).txt /usr/share/snmp/mibs/$(MIB).txt
+	cp $(current_dir)/mibs/$(MIB).txt /usr/share/snmp/mibs/$(MIB).txt
 	snmptranslate -M+. -m$(MIB) -Tp
 
 server:
@@ -30,10 +31,10 @@ deploy:
 	snmpset localhost UCD-DLMOD-MIB::dlmodStatus.3 i create
 	snmpset localhost UCD-DLMOD-MIB::dlmodStatus.4 i create
 
-	snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s "nstAgentPluginLogin" UCD-DLMOD-MIB::dlmodPath.1 s "$(OBJECT).so"
-	snmpset localhost UCD-DLMOD-MIB::dlmodName.2 s "nstAgentPluginTimeInRFC3339" UCD-DLMOD-MIB::dlmodPath.2 s "$(OBJECT).so"
-	snmpset localhost UCD-DLMOD-MIB::dlmodName.3 s "nstAgentPluginInt32" UCD-DLMOD-MIB::dlmodPath.3 s "$(OBJECT).so"
-	snmpset localhost UCD-DLMOD-MIB::dlmodName.4 s "nstAgentPluginReleaseVersion" UCD-DLMOD-MIB::dlmodPath.4 s "$(OBJECT).so"
+	snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s "nstAgentPluginLogin" UCD-DLMOD-MIB::dlmodPath.1 s "$(current_dir)/$(OBJECT).so"
+	snmpset localhost UCD-DLMOD-MIB::dlmodName.2 s "nstAgentPluginTimeInRFC3339" UCD-DLMOD-MIB::dlmodPath.2 s "$(current_dir)/$(OBJECT).so"
+	snmpset localhost UCD-DLMOD-MIB::dlmodName.3 s "nstAgentPluginInt32" UCD-DLMOD-MIB::dlmodPath.3 s "$(current_dir)/$(OBJECT).so"
+	snmpset localhost UCD-DLMOD-MIB::dlmodName.4 s "nstAgentPluginReleaseVersion" UCD-DLMOD-MIB::dlmodPath.4 s "$(current_dir)/$(OBJECT).so"
 
 	snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i load
 	snmpset localhost UCD-DLMOD-MIB::dlmodStatus.2 i load
