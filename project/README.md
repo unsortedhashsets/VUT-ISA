@@ -18,7 +18,7 @@ Implementation of the MIB module and dynamically loadable SNMP agent extension f
 # List of uploaded files
 * AgentPluginObject.c
 * AgentPluginObject.h
-* mib/XABRAM00-MIB.txt
+* mibs/XABRAM00-MIB.txt
 * Makefile
 * manual.pdf
 * README.md
