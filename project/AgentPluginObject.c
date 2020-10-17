@@ -41,7 +41,7 @@ static oid nstAgentPluginReleaseVersion_oid[] = {1, 3, 6, 1, 3, 22, 4 };
  * Function:  returnSystemInformation 
  * --------------------
  * Get information about OS release version (use sys/utsname.h library):
- *    example output: ""
+ *    example output: "3.10.0-1127.19.1.el7.x86_64"
  *
  *  @return void -> updates static output value
  */
@@ -56,7 +56,7 @@ void returnSystemInformation(){
  * --------------------
  * Get information about current time and translate in RFC3339 format:
  *    https://tools.ietf.org/html/rfc3339
- *  example output: ""
+ *  example output: "2020-10-17T15:35:51-04:00"
  *
  *  @return void -> updates static output value
  */
