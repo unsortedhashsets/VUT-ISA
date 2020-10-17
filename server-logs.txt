@@ -1,0 +1,10 @@
+[root@localhost project]# make server
+snmpd -f -L -DnstAgentPluginLogin -DnstAgentPluginTimeInRFC3339 -DnstAgentPluginInt32 -DnstAgentPluginReleaseVersion,dlmod
+registered debug token nstAgentPluginLogin, 1
+registered debug token nstAgentPluginTimeInRFC3339, 1
+registered debug token nstAgentPluginInt32, 1
+registered debug token nstAgentPluginReleaseVersion, 1
+registered debug token dlmod, 1
+dlmod: register mib
+dlmod: dlmod_path: /usr/lib64/snmp/dlmod
+NET-SNMP version 5.7.2

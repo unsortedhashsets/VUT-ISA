@@ -1,0 +1,37 @@
+Connection from UDP: [192.168.56.1]:59485->[192.168.56.4]:161
+nstAgentPluginLogin: MODE_GET: string value = xabram00
+nstAgentPluginTimeInRFC3339: MODE_GET: string value = 2020-10-17T15:39:48-04:00
+nstAgentPluginInt32: MODE_GET: int32 value = 666
+nstAgentPluginReleaseVersion: MODE_GET: string value = 3.10.0-1127.19.1.el7.x86_64
+Connection from UDP: [192.168.56.1]:57621->[192.168.56.4]:161
+nstAgentPluginInt32: MODE_SET_RESERVE1: check value type
+nstAgentPluginInt32: MODE_SET_RESERVE2: reserve value = 666
+nstAgentPluginInt32: MODE_SET_ACTION: new int32 value = 1234
+nstAgentPluginInt32: MODE_SET_ACTION: new int32 value = 1234
+nstAgentPluginInt32: MODE_SET_COMMIT: skip
+nstAgentPluginInt32: MODE_SET_FREE: skip
+Connection from UDP: [192.168.56.1]:58459->[192.168.56.4]:161
+nstAgentPluginInt32: MODE_GET: int32 value = 1234
+Connection from UDP: [192.168.56.1]:33857->[192.168.56.4]:161
+nstAgentPluginLogin: MODE_GET: string value = xabram00
+nstAgentPluginTimeInRFC3339: MODE_GET: string value = 2020-10-17T15:39:48-04:00
+nstAgentPluginInt32: MODE_GET: int32 value = 1234
+nstAgentPluginReleaseVersion: MODE_GET: string value = 3.10.0-1127.19.1.el7.x86_64
+Connection from UDP: [192.168.56.1]:57432->[192.168.56.4]:161
+nstAgentPluginInt32: MODE_SET_RESERVE1: check value type
+nstAgentPluginInt32: MODE_SET_RESERVE2: reserve value = 1234
+nstAgentPluginInt32: MODE_SET_ACTION: new int32 value = 666
+nstAgentPluginInt32: MODE_SET_ACTION: new int32 value = 666
+nstAgentPluginInt32: MODE_SET_COMMIT: skip
+nstAgentPluginInt32: MODE_SET_FREE: skip
+Connection from UDP: [192.168.56.1]:36620->[192.168.56.4]:161
+nstAgentPluginInt32: MODE_GET: int32 value = 666
+Connection from UDP: [192.168.56.1]:42808->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:47360->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:38829->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:44312->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:53854->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:50279->[192.168.56.4]:161
+Connection from UDP: [192.168.56.1]:43063->[192.168.56.4]:161
+nstAgentPluginInt32: MODE_SET_RESERVE1: check value type
+nstAgentPluginInt32: MODE_SET_FREE: skip

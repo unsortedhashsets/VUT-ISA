@@ -120,7 +120,6 @@ ifdef IP
 	snmpset -v 2c -c public ${IP} XABRAM00-MIB::nstAgentPluginInt32.0 i -2147483649 || true
 	@echo ""
 	snmpset -v 2c -c public ${IP} .1.3.6.1.3.22.3.0 s "TEST"      || true
-	@echo -e $(ERROR_COLOR)REMOTE FAILED TESTS (all should fail) $(NO_COLOR)
 else
 	@echo 'please, define: IP="<ip>"'
 endif

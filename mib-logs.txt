@@ -1,0 +1,41 @@
+[root@localhost project]# make mib
+cp /home/user/VUT-ISA/project/mibs/XABRAM00-MIB.txt /usr/share/snmp/mibs/XABRAM00-MIB.txt
+snmptranslate -M+. -mXABRAM00-MIB -Tp
++--iso(1)
+   |
+   +--org(3)
+      |
+      +--dod(6)
+         |
+         +--internet(1)
+            |
+            +--directory(1)
+            |
+            +--mgmt(2)
+            |  |
+            |  +--mib-2(1)
+            |     |
+            |     +--transmission(10)
+            |
+            +--experimental(3)
+            |  |
+            |  +--nstAgentPlugins(22)
+            |     +-- -R-- String    nstAgentPluginLogin(1)
+            |     +-- -R-- String    nstAgentPluginTimeInRFC3339(2)
+            |     +-- -RW- Integer32 nstAgentPluginInt32(3)
+            |     |        Range: -2147483648..2147483647
+            |     +-- -R-- String    nstAgentPluginReleaseVersion(4)
+            |
+            +--private(4)
+            |  |
+            |  +--enterprises(1)
+            |
+            +--security(5)
+            |
+            +--snmpV2(6)
+               |
+               +--snmpDomains(1)
+               |
+               +--snmpProxys(2)
+               |
+               +--snmpModules(3)

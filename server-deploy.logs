@@ -1,0 +1,120 @@
+Connection from UDP: [127.0.0.1]:47599->[127.0.0.1]:161
+dlmod: dlmod_create_module
+dlmod: dlmod_create_module
+dlmod: dlmod_create_module
+dlmod: dlmod_create_module
+Connection from UDP: [127.0.0.1]:36146->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+Connection from UDP: [127.0.0.1]:44258->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+Connection from UDP: [127.0.0.1]:57057->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+Connection from UDP: [127.0.0.1]:60747->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+Connection from UDP: [127.0.0.1]:55993->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmod_load_module nstAgentPluginLogin: /home/user/VUT-ISA/project/AgentPluginObject.so
+nstAgentPluginLogin: Initializing module
+nstAgentPluginLogin: Initalizing scalar string. Default value = xabram00
+nstAgentPluginLogin: Done initalizing module
+dlmod: dlmod_load_module nstAgentPluginTimeInRFC3339: //home/user/VUT-ISA/project/AgentPluginObject.so
+nstAgentPluginTimeInRFC3339: Initializing module
+nstAgentPluginTimeInRFC3339: Initalizing scalar string.
+nstAgentPluginTimeInRFC3339: Done initalizing module
+dlmod: dlmod_load_module nstAgentPluginInt32: /home/user/VUT-ISA/project/AgentPluginObject.so
+nstAgentPluginInt32: Initializing the module
+nstAgentPluginInt32: Initalizing scalar integer. Default value = 0
+nstAgentPluginInt32: Done initalizing module
+dlmod: dlmod_load_module nstAgentPluginReleaseVersion: //home/user/VUT-ISA/project/AgentPluginObject.so
+nstAgentPluginReleaseVersion: Initializing module
+nstAgentPluginReleaseVersion: Initalizing scalar string.
+nstAgentPluginReleaseVersion: Done initalizing module
+Connection from UDP: [127.0.0.1]:45305->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+Connection from UDP: [127.0.0.1]:45305->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+Connection from UDP: [127.0.0.1]:45305->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+Connection from UDP: [127.0.0.1]:45305->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+Connection from UDP: [127.0.0.1]:45305->[127.0.0.1]:161
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420fa60 dlmod_index: 2
+dlmod: dlmodEntry dlm: 0x55bb6420fcd0 dlmod_index: 3
+dlmod: dlmodEntry dlm: 0x55bb6420ff40 dlmod_index: 4
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1
+dlmod: dlmodEntry dlm: 0x55bb6420f7f0 dlmod_index: 1

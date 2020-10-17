@@ -1,0 +1,3 @@
+[user@localhost project]$ make
+gcc -I. `net-snmp-config --cflags` -fPIC -shared -c -o AgentPluginObject.o AgentPluginObject.c
+gcc -I. `net-snmp-config --cflags` -fPIC -shared -o AgentPluginObject.so AgentPluginObject.o
