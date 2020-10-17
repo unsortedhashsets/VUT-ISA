@@ -332,9 +332,9 @@ int handle_nstAgentPluginReleaseVersion(netsnmp_mib_handler *handler,
  */
 void init_nstAgentPluginLogin(void){
     DEBUGMSGTL(("nstAgentPluginLogin",
-                "Initializing nstAgentPluginLogin module\n"));
+                "Initializing module\n"));
     DEBUGMSGTL(("nstAgentPluginLogin",
-                "Initalizing nstAgentPluginLogin scalar string. Default value = %s\n",
+                "Initalizing scalar string. Default value = %s\n",
                                                          nstAgentPluginLogin_object));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginLogin",
@@ -343,7 +343,7 @@ void init_nstAgentPluginLogin(void){
                                              OID_LENGTH(nstAgentPluginLogin_oid),
                                              HANDLER_CAN_RONLY));
     DEBUGMSGTL(("nstAgentPluginLogin", 
-                "Done initalizing nstAgentPluginLogin module\n"));
+                "Done initalizing module\n"));
 }
 
 /*
@@ -355,9 +355,9 @@ void init_nstAgentPluginLogin(void){
  */
 void init_nstAgentPluginTimeInRFC3339(void){
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
-                "Initializing nstAgentPluginTimeInRFC3339 module\n"));
+                "Initializing module\n"));
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339", 
-                "Initalizing nstAgentPluginTimeInRFC3339 string.\n"));
+                "Initalizing scalar string.\n"));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginTimeInRFC3339",
                                        handle_nstAgentPluginTimeInRFC3339,
@@ -365,7 +365,7 @@ void init_nstAgentPluginTimeInRFC3339(void){
                                        OID_LENGTH(nstAgentPluginTimeInRFC3339_oid),
                                        HANDLER_CAN_RONLY));
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339",
-                "Done initalizing nstAgentPluginTimeInRFC3339 module\n"));
+                "Done initalizing module\n"));
 }
 
 /*
@@ -377,9 +377,9 @@ void init_nstAgentPluginTimeInRFC3339(void){
  */
 void init_nstAgentPluginInt32(void){
     DEBUGMSGTL(("nstAgentPluginInt32",
-                "Initializing the nstAgentPluginInt32 module\n"));
+                "Initializing the module\n"));
     DEBUGMSGTL(("nstAgentPluginInt32", 
-                "Initalizing nstAgentPluginInt32 scalar integer. Default value = %d\n",
+                "Initalizing scalar integer. Default value = %d\n",
                                                           nstAgentPluginInt32_object));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginInt32",
@@ -388,7 +388,7 @@ void init_nstAgentPluginInt32(void){
                                              OID_LENGTH(nstAgentPluginInt32_oid),
                                              HANDLER_CAN_RWRITE));
     DEBUGMSGTL(("nstAgentPluginInt32",
-                "Done initalizing nstAgentPluginInt32 module\n"));
+                "Done initalizing module\n"));
 }
 
 /*
@@ -400,9 +400,9 @@ void init_nstAgentPluginInt32(void){
  */
 void init_nstAgentPluginReleaseVersion(void){
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
-                "Initializing nstAgentPluginReleaseVersion module\n"));
+                "Initializing module\n"));
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
-                "Initalizing nstAgentPluginReleaseVersion string.\n"));
+                "Initalizing scalar string.\n"));
     netsnmp_register_scalar(
         netsnmp_create_handler_registration("nstAgentPluginReleaseVersion",
                                              handle_nstAgentPluginReleaseVersion,
@@ -410,7 +410,7 @@ void init_nstAgentPluginReleaseVersion(void){
                                              OID_LENGTH(nstAgentPluginReleaseVersion_oid),
                                              HANDLER_CAN_RONLY));
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
-                "Done initalizing nstAgentPluginReleaseVersion module\n"));
+                "Done initalizing module\n"));
 }
 
 
@@ -433,7 +433,7 @@ void deinit_nstAgentPluginLogin(void){
     unregister_mib(nstAgentPluginLogin_oid,
                    OID_LENGTH(nstAgentPluginLogin_oid));
     DEBUGMSGTL(("nstAgentPluginLogin",
-                "Done deinitalizing nstAgentPluginLogin module\n"));
+                "Done deinitalizing module\n"));
 }
 
 /*
@@ -447,7 +447,7 @@ void deinit_nstAgentPluginTimeInRFC3339(void){
     unregister_mib(nstAgentPluginTimeInRFC3339_oid,
                    OID_LENGTH(nstAgentPluginTimeInRFC3339_oid));
     DEBUGMSGTL(("nstAgentPluginTimeInRFC3339",
-                "Done deinitalizing nstAgentPluginTimeInRFC3339 module\n"));
+                "Done deinitalizing module\n"));
 }
 
 /*
@@ -461,7 +461,7 @@ void deinit_nstAgentPluginInt32(void){
     unregister_mib(nstAgentPluginInt32_oid,
                    OID_LENGTH(nstAgentPluginInt32_oid));
     DEBUGMSGTL(("nstAgentPluginInt32",
-                "Done deinitalizing nstAgentPluginInt32 module\n"));
+                "Done deinitalizing module\n"));
 }
 
 /*
@@ -475,5 +475,5 @@ void deinit_nstAgentPluginReleaseVersion(void){
     unregister_mib(nstAgentPluginReleaseVersion_oid,
                    OID_LENGTH(nstAgentPluginReleaseVersion_oid));
     DEBUGMSGTL(("nstAgentPluginReleaseVersion",
-                "Done deinitalizing nstAgentPluginReleaseVersion module\n"));
+                "Done deinitalizing module\n"));
 }
